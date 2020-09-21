@@ -1,3 +1,5 @@
+package com.thoughtworks.cleanarch;
+
 import javax.xml.validation.SchemaFactory;
 
 public class Arg {
