@@ -26,4 +26,16 @@ class ArgsTest {
         assertEquals(targetArgs.get(2),argList.get(2));
     }
 
+    @Test
+    public void should_throw_exception_when_error_value() throws Exception {
+        String inputArgs = "-l -true";
+
+        try {
+            new Args(inputArgs);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            assertTrue(exception.getMessage().contains("value不能以-开头"));
+        }
+    }
+
 }
