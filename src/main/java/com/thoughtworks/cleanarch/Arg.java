@@ -1,6 +1,4 @@
 package com.thoughtworks.cleanarch;
-
-import javax.xml.validation.SchemaFactory;
 import java.util.List;
 
 public class Arg {
@@ -14,20 +12,9 @@ public class Arg {
         this.type = type;
     }
 
-    public static Arg to(List<String> argList) {
-        String flag = (String) argList.get(0);
-        Schema schema = null;
-        switch(flag){
-            case "l" :
-                schema = new Schema(flag,"boolean",false);
-                break;
-            case "p" :
-                schema = new Schema(flag,"int",0);
-                break;
-            case "d" :
-                schema = new Schema(flag,"String","");
-                break;
-        }
+    public static Arg to(List<String> argList) throws Exception {
+        Schema schema = SchemaFactory.create((String) argList.get(0));
+
         return new Arg((String) argList.get(0),argList.get(1),schema.getValueType());
     }
 

@@ -1,6 +1,5 @@
 package com.thoughtworks.cleanarch;
 
-import javax.xml.validation.SchemaFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +18,7 @@ public class Args {
         List<String> Args = splitArgs(command);
         for(String Arg: Args ){
             Arg arg = parseArg(Arg);
-            checkRepeatFlag(argList,arg);
+            checkFlag(argList,arg);
             argList.add(arg);
         }
         return argList;
@@ -33,14 +32,11 @@ public class Args {
         }
     }
 
-    private void checkRepeatFlag(List<Arg> argList, Arg arg) throws Exception {
+    private void checkFlag(List<Arg> argList, Arg arg) throws Exception {
         for (Arg arg1:argList){
-            checkFlag(arg1,arg);
-        }
-    }
-    private void checkFlag(Arg arg1,Arg arg) throws Exception {
-        if(arg1.getFlag().equals(arg.getFlag())){
-            throw new Exception("不允许输入重复flag");
+            if(arg1.getFlag().equals(arg.getFlag())){
+                throw new Exception("不允许输入相同flag");
+            }
         }
     }
 
